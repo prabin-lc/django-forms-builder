@@ -68,6 +68,24 @@ CLASSES = {
     URL: forms.URLField,
 }
 
+ADDITIONAL_CSS_CLASSES = {
+    TEXT: " form-control",
+    TEXTAREA: " form-control",
+    EMAIL: " form-control",
+    CHECKBOX: " form-check",
+    CHECKBOX_MULTIPLE: " form-check-inline",
+    SELECT: " form-check",
+    SELECT_MULTIPLE: " form-check-inline",
+    RADIO_MULTIPLE: " form-check-inline",
+    FILE: " form-control-file",
+    DATE: "",
+    DATE_TIME: "",
+    DOB: "",
+    HIDDEN: "",
+    NUMBER: " form-control",
+    URL: " form-control",
+}
+
 # Widgets for field types where a specialised widget is required.
 WIDGETS = {
     TEXTAREA: forms.Textarea,

@@ -202,6 +202,8 @@ class FormForForm(forms.ModelForm):
 
             # Add identifying CSS classes to the field.
             css_class = field_class.__name__.lower()
+            css_class += fields.ADDITIONAL_CSS_CLASSES[field.field_type]
+
             if field.required:
                 css_class += " required"
                 if settings.USE_HTML5:
@@ -295,17 +297,17 @@ class EntriesForm(forms.Form):
                 else:
                     choices = field.get_choices()
                 contains_field = forms.MultipleChoiceField(label=" ",
-                    choices=choices, widget=forms.CheckboxSelectMultiple(),
-                    required=False)
+                                                           choices=choices, widget=forms.CheckboxSelectMultiple(),
+                                                           required=False)
                 self.fields["%s_filter" % field_key] = choice_filter_field
                 self.fields["%s_contains" % field_key] = contains_field
             elif field.is_a(*fields.MULTIPLE):
                 # A fixed set of choices to filter by, with multiple
                 # possible values in the entry field.
                 contains_field = forms.MultipleChoiceField(label=" ",
-                    choices=field.get_choices(),
-                    widget=forms.CheckboxSelectMultiple(),
-                    required=False)
+                                                           choices=field.get_choices(),
+                                                           widget=forms.CheckboxSelectMultiple(),
+                                                           required=False)
                 self.fields["%s_filter" % field_key] = multiple_filter_field
                 self.fields["%s_contains" % field_key] = contains_field
             elif field.is_a(*fields.DATES):
@@ -391,7 +393,7 @@ class EntriesForm(forms.Form):
         # if specified.
         model = self.fieldentry_model
         field_entries = model.objects.filter(entry__form=self.form
-            ).order_by("-entry__id").select_related("entry")
+                                             ).order_by("-entry__id").select_related("entry")
         if self.posted_data("field_0_filter") == FILTER_CHOICE_BETWEEN:
             time_from = self.posted_data("field_0_from")
             time_to = self.posted_data("field_0_to")
