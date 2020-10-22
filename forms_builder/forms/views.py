@@ -120,5 +120,5 @@ def form_sent(request, slug, template="forms/form_sent.html"):
     """
     published = Form.objects.published(for_user=request.user)
     context = {"form": get_object_or_404(published, slug=slug)}
-    # return render(template, context)
-    return HttpResponse("Form submitted")
+    return render(request, template, context)
+    # return HttpResponse("Form submitted")
