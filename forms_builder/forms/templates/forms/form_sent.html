@@ -6,7 +6,9 @@
     div#customFormContent {
       font-family: sans-serif;
       padding: 1em 2em;
-      text-align: center;
+    }
+    div#customFormContent * {
+      max-width: 100%;
     }
     div#customFormContent p {
       width: 50em;
@@ -23,8 +25,9 @@
 </head>
 <body>
   <div id="customFormContent">
-    <h1>{{ form.title }}</h1>
+    <h2>{{ form.title }}</h2>
     {% if form.response %}
+    <br />
     <p>{{ form.response }}</p>
     {% endif %}
   </div>
